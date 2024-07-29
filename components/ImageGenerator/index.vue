@@ -6,15 +6,15 @@
       <ThumbnailPreview
         ref="previewRef"
         :episode-number="episodeNumber"
-        :podcast-title="podcastTitle"
+        :episode-title="episodeTitle"
         :title-size="titleSize"
       />
       <ThumbnailControls
         :episode-number="episodeNumber"
-        :podcast-title="podcastTitle"
+        :episode-title="episodeTitle"
         :title-size="titleSize"
         @update:episodeNumber="episodeNumber = $event"
-        @update:podcastTitle="podcastTitle = $event"
+        @update:episodeTitle="episodeTitle = $event"
         @update:title-size="titleSize = $event"
       />
     </div>
@@ -32,7 +32,7 @@ import { Button } from "~/components/ui/button";
 import { generateThumbnail } from "~/lib/thumbnailGenerator";
 
 const episodeNumber = ref(1);
-const podcastTitle = ref("Título do Podcast");
+const episodeTitle = ref("Episode Title");
 const titleSize = ref(18);
 const previewRef = ref<InstanceType<typeof ThumbnailPreview> | null>(null);
 
@@ -42,7 +42,7 @@ const downloadThumbnail = async () => {
   try {
     await generateThumbnail(previewRef.value.$el, episodeNumber.value);
   } catch (error) {
-    console.error("Erro ao gerar a imagem:", error);
+    console.error("Error generating thumbnail:", error);
   }
 };
 </script>

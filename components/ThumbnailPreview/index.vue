@@ -8,7 +8,7 @@
       class="font-jakarta-bold text-[#22374F] text-center px-4"
       :style="{ fontSize: `${titleSize}px` }"
     >
-      {{ podcastTitle }}
+      {{ episodeTitle }}
     </p>
   </div>
 </template>
@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 defineProps<{
   episodeNumber: number;
-  podcastTitle: string;
+  episodeTitle: string;
   titleSize: number;
 }>();
 </script>

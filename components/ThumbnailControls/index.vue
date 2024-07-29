@@ -1,9 +1,9 @@
 <template>
   <div class="controls">
     <div>
-      <Label>Número do Episódio:</Label>
+      <Label>Episode Number:</Label>
       <Input
-        placeholder="Número do Episódio"
+        placeholder="Episode Number"
         :model-value="String(episodeNumber)"
         @update:model-value="(value) => updateEpisodeNumber(value as string)"
         type="number"
@@ -11,16 +11,16 @@
       />
     </div>
     <div>
-      <Label>Título do Podcast:</Label>
+      <Label>Episode Title:</Label>
       <Input
-        placeholder="Título do Podcast"
-        :model-value="podcastTitle"
-        @update:model-value="(value) => updatePodcastTitle(value as string)"
+        placeholder="Episode Title"
+        :model-value="episodeTitle"
+        @update:model-value="(value) => updateEpisodeTitle(value as string)"
         type="text"
       />
     </div>
     <div>
-      <Label>Tamanho do Título:</Label>
+      <Label>Title Size:</Label>
       <Slider
         :default-value="[titleSize]"
         :min="1"
@@ -34,17 +34,17 @@
 <script setup lang="ts">
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
-import Slider from "../ui/slider/Slider.vue";
+import { Slider } from "~/components/ui/slider";
 
-const props = defineProps<{
+defineProps<{
   episodeNumber: number;
-  podcastTitle: string;
+  episodeTitle: string;
   titleSize: number;
 }>();
 
 const emit = defineEmits<{
   (e: "update:episodeNumber", value: number): void;
-  (e: "update:podcastTitle", value: string): void;
+  (e: "update:episodeTitle", value: string): void;
   (e: "update:titleSize", value: number): void;
 }>();
 
@@ -55,8 +55,8 @@ const updateEpisodeNumber = (value: string) => {
   }
 };
 
-const updatePodcastTitle = (value: string) => {
-  emit("update:podcastTitle", value);
+const updateEpisodeTitle = (value: string) => {
+  emit("update:episodeTitle", value);
 };
 
 const updateTitleSize = (value: number) => {
@@ -67,5 +67,14 @@ const updateTitleSize = (value: number) => {
 <style scoped>
 .controls {
   text-align: left;
+}
+
+.controls > div {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.75rem;
 }
 </style>
